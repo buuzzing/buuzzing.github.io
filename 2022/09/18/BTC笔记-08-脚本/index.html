@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Buzzing">
+    
+    <title>
+        
+            BTC笔记-08-脚本 |
+        
+        Buzzing&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/blog.svg">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-keep@3.5.2/source/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-keep@3.5.2/source/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-keep@3.5.2/source/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-keep@3.5.2/source/fontawesome/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"buuzzing.github.io","root":"/","language":"zh-CN"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":null,"favicon":"/images/blog.svg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+               Buzzing&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">BTC笔记-08-脚本</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Buzzing</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-09-18 16:40:16</span>
+        <span class="mobile">2022-09-18 16:40</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-11-13 20:20:24</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h2 id="BTC-脚本"><a href="#BTC-脚本" class="headerlink" title="BTC-脚本"></a>BTC-脚本</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Vt411X7JF?p=9" >B站视频链接<i class="fas fa-external-link-alt"></i></a></p>
+<hr>
+<h3 id="一个交易实例"><a href="#一个交易实例" class="headerlink" title="一个交易实例"></a>一个交易实例</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.blockchain.com/btc/tx/921af728159e3019c18bbe0de9c70aa563ad27f3f562294d993a208d4fcfdd24" >实例<i class="fas fa-external-link-alt"></i></a></p>
+<p>比特币语言仅能操作一个堆栈，因此称为 <code>stack based language</code> 基于栈的语言</p>
+<hr>
+<h3 id="交易结构"><a href="#交易结构" class="headerlink" title="交易结构"></a>交易结构</h3><p><strong>交易的宏观信息</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;result&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;txid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;921a..dd24&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hash&quot;</span><span class="punctuation">:</span> <span class="string">&quot;921a..dd24&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;size&quot;</span><span class="punctuation">:</span> <span class="number">226</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;locktime&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>      <span class="comment">// 设定交易的生效时间，0 -&gt; 立即生效</span></span><br><span class="line">    <span class="attr">&quot;vin&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>...<span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;vout&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>...<span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;blockhash&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0000000000000000002c510d...5c0b&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;confirmations&quot;</span><span class="punctuation">:</span> <span class="number">219722</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;time&quot;</span><span class="punctuation">:</span> <span class="number">1530846727</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;blocktime&quot;</span><span class="punctuation">:</span> <span class="number">1530846727</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>交易的输入</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;vin&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;txid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c0cb...c57b&quot;</span><span class="punctuation">,</span>      <span class="comment">// 币来源的交易的哈希值</span></span><br><span class="line">    <span class="attr">&quot;vout&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>                  <span class="comment">// 表示是来源交易输出中的第几个</span></span><br><span class="line">    <span class="attr">&quot;scriptSig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>              <span class="comment">// input script</span></span><br><span class="line">        <span class="attr">&quot;asm&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3045...0018&quot;</span><span class="punctuation">,</span>   <span class="comment">// assembly，表示 OP_CODE</span></span><br><span class="line">        <span class="attr">&quot;hex&quot;</span><span class="punctuation">:</span> <span class="string">&quot;4830...0018&quot;</span>    <span class="comment">// 脚本的十六进制表示</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p><strong>交易的输出</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;vout&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="number">0.22684000</span><span class="punctuation">,</span>        <span class="comment">// BTC 数量</span></span><br><span class="line">    <span class="attr">&quot;n&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>                     <span class="comment">// 序号</span></span><br><span class="line">    <span class="attr">&quot;scriptPubKey&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>           <span class="comment">// output script</span></span><br><span class="line">        <span class="attr">&quot;asm&quot;</span><span class="punctuation">:</span> <span class="string">&quot;DUP HASH160 2683...d743 EQUALVERIFY CHECKSIG&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;hex&quot;</span><span class="punctuation">:</span> <span class="string">&quot;76a9...88ac&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;reqSigs&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span>           <span class="comment">// 需要多少个签名才能兑现</span></span><br><span class="line">        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pubkeyhash&quot;</span><span class="punctuation">,</span>   <span class="comment">// 输出类型</span></span><br><span class="line">        <span class="attr">&quot;addresses&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>          <span class="comment">// 输出地址</span></span><br><span class="line">            <span class="string">&quot;19z8...QvSr&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="number">0.53756644</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;n&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;scriptPubKey&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;asm&quot;</span><span class="punctuation">:</span> <span class="string">&quot;DUP HASH160 da7d...2cd2 EQUALVERIFY CHECKSIG&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;hex&quot;</span><span class="punctuation">:</span> <span class="string">&quot;76a9...88ac&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;reqSigs&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pubkeyhash&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;addresses&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;1LvG...NYhX&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p><strong>交易示意图</strong></p>
+<p><img src="https://s2.loli.net/2022/11/13/VSCvc35ANjHszX4.png" alt="Tx example"></p>
+<p>验证交易需要将交易的输入脚本与所声明的币来源的输出脚本拼接执行，若不出错则交易合法（安全起见，实际上输入脚本与输出脚本是分开执行的）</p>
+<hr>
+<h3 id="输入、输出脚本的几种形式"><a href="#输入、输出脚本的几种形式" class="headerlink" title="输入、输出脚本的几种形式"></a>输入、输出脚本的几种形式</h3><p><strong><code>P2PK (Pay to Public Key)</code></strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">input script:</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(Sig)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">output script:</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(PubKey)</span></span><br><span class="line">    <span class="string">CHECKSIG</span></span><br></pre></td></tr></table></figure>
+<p>输出脚本里直接给出收款人的公钥</p>
+<p>输入脚本里直接给出签名，这个签名是用私钥对输入脚本所在的整个交易的签名</p>
+<p><code>CHECKSIG</code> 会弹出栈顶的两个元素，并用公钥进行检查。如果合法，将 <code>TRUE</code> 压入栈顶，否则运行失败</p>
+<hr>
+<p><strong><code>P2PKH (Pay to Public Key Hash)</code></strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">input script:</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(Sig)</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(PubKey)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">output script:</span></span><br><span class="line">    <span class="string">DUP</span></span><br><span class="line">    <span class="string">HASH160</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(PubKeyHash)</span></span><br><span class="line">    <span class="string">EQUALVERIFY</span></span><br><span class="line">    <span class="string">CHECKSIG</span></span><br></pre></td></tr></table></figure>
+<p>与上面的区别是，输出脚本中没有直接给出收款人地址的公钥，而是使用公钥的哈希。公钥是在输入脚本里给出的</p>
+<p>这种方式也是最常使用的</p>
+<p><code>DUP</code> 会将栈顶元素复制一份再压入栈</p>
+<p><code>HASH160</code> 会将栈顶元素弹出，取哈希值，再压入栈</p>
+<p><code>EQUALVERIFY</code> 会比较栈顶的两个元素是否相等</p>
+<hr>
+<p><strong><code>P2SH (Pay to Script Hash)</code></strong></p>
+<p>采用 $\text{BIP 16}$ 的方案</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">input script:</span></span><br><span class="line">    <span class="string">...</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(Sig)</span></span><br><span class="line">    <span class="string">...</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(serialized</span> <span class="string">redeemScript)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">output script:</span></span><br><span class="line">    <span class="string">HASH160</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(redeemScriptHash)</span></span><br><span class="line">    <span class="string">EQUAL</span></span><br></pre></td></tr></table></figure>
+<p>这里的输出脚本没有使用收款人地址的哈希，而是一段脚本的哈希，称为 <code>redeemScript</code> 赎回脚本</p>
+<p><code>input script</code> 要给出一些签名及一段序列化的 <code>redeemScript</code>。验证分为两步：</p>
+<ol>
+<li>验证序列化的 <code>redeemScript</code> 是否与 <code>output script</code> 中的哈希值匹配</li>
+<li>反序列化并执行 <code>redeemScript</code>，验证 <code>input script</code> 中给出的签名是否正确</li>
+</ol>
+<p><code>redeemScript</code> 的形式：</p>
+<ul>
+<li><code>P2PK</code> 形式</li>
+<li><code>P2PKH</code> 形式</li>
+<li><code>多重签名</code> 形式</li>
+</ul>
+<blockquote>
+<p>例子：用 <code>P2SH</code> 实现 <code>P2PK</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">redeemScript:</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(PubKey)</span></span><br><span class="line">    <span class="string">CHECKSIG</span></span><br><span class="line"></span><br><span class="line"><span class="attr">input script:</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(Sig)</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(serialized</span> <span class="string">redeemScript)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">output script:</span></span><br><span class="line">    <span class="string">HASH160</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(redeemScriptHash)</span></span><br><span class="line">    <span class="string">EQUAL</span></span><br></pre></td></tr></table></figure>
+<p>第一阶段的验证：拼接输入与输出脚本并执行</p>
+<p>第二阶段的验证：反序列化赎回脚本，执行</p>
+</blockquote>
+<p>这种方式可以很好的支持多重签名</p>
+<hr>
+<p><strong><code>Proof of Burn</code></strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">output script:</span></span><br><span class="line">    <span class="string">RETURN</span></span><br><span class="line">    <span class="string">...</span></span><br></pre></td></tr></table></figure>
+<p>这种形式的 <code>output</code> 被称为：<code>Provably Unspendable / Prunable Outputs</code></p>
+<p>假如有一个交易的 <code>input</code> 指向这个 <code>output</code>，不论 <code>input</code> 里的脚本如何设计，执行到 <code>RETURN</code> 命令之后都会直接返回 <code>false</code>，不会执行 <code>RETURN</code> 后面的其他指令，所以这个 <code>output</code> 无法再被花出去</p>
+<p>这种交易可以作为销毁比特币的证明，也可以向区块链中写入一些内容以保存</p>
+<hr>
+<h3 id="多重签名"><a href="#多重签名" class="headerlink" title="多重签名"></a>多重签名</h3><p>最早的多重签名目前已不再使用</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">input script:</span></span><br><span class="line">    <span class="string">❌</span>                  <span class="comment"># 随便压入什么东西，以应对 CHECKMULTISIG 的 bug</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(Sig_1)</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(Sig_2)</span></span><br><span class="line">    <span class="string">...</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(Sig_M)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">output script:</span></span><br><span class="line">    <span class="string">M</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(pubkey_1)</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(pubkey_2)</span></span><br><span class="line">    <span class="string">...</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(pubkey_N)</span></span><br><span class="line">    <span class="string">N</span></span><br><span class="line">    <span class="string">CHECKMULTISIG</span></span><br></pre></td></tr></table></figure>
+<p>这种方式需要指定 <code>N</code> 和 <code>M</code> 的值</p>
+<p>这种方式的输出脚本是比较复杂的，下面使用 <code>P2SH</code> 实现</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">redeemScript:</span></span><br><span class="line">    <span class="string">M</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(pubkey_1)</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(pubkey_2)</span></span><br><span class="line">    <span class="string">...</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(pubkey_N)</span></span><br><span class="line">    <span class="string">N</span></span><br><span class="line">    <span class="string">CHECKMULTISIG</span></span><br><span class="line"></span><br><span class="line"><span class="attr">input script:</span></span><br><span class="line">    <span class="string">❌</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(Sig_1)</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(Sig_2)</span></span><br><span class="line">    <span class="string">...</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(Sig_M)</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(seialized</span> <span class="string">RedeemScript)</span></span><br><span class="line"></span><br><span class="line"><span class="attr">output script:</span></span><br><span class="line">    <span class="string">HASH160</span></span><br><span class="line">    <span class="string">PUSHDATA</span> <span class="string">(RedeemScriptHash)</span></span><br><span class="line">    <span class="string">EQUAL</span></span><br></pre></td></tr></table></figure>
+<p>输出的复杂被转移到了 <code>redeemScript</code> 中</p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/09/23/BTC%E7%AC%94%E8%AE%B0-09-%E5%88%86%E5%8F%89/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">BTC笔记-09-分叉</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/09/13/BTC%E7%AC%94%E8%AE%B0-07-%E6%8C%96%E7%9F%BF/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">BTC笔记-07-挖矿</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Buzzing</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+
+</main>
+
+
+
+<script src="//unpkg.com/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//unpkg.com/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//unpkg.com/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//unpkg.com/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//unpkg.com/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//unpkg.com/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
+        
+        
+    
+</div>
+
+
+
+<!-- Support for mermaid -->
+
+<script src='https://unpkg.com/mermaid@9.2.2/dist/mermaid.min.js'></script>
+<script>
+    if (window.mermaid) {
+    mermaid.initialize({theme: 'default'});
+    }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
