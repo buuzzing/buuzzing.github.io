@@ -9,7 +9,7 @@
     
     <title>
         
-            BTC笔记-06-挖矿难度 |
+            ETH笔记-05-GHOST协议 |
         
         Buzzing&#39;s Blog
     </title>
@@ -150,7 +150,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">BTC笔记-06-挖矿难度</span>
+                <span class="title-hover-animation">ETH笔记-05-GHOST协议</span>
             </div>
 
             
@@ -170,13 +170,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-09-09 10:56:55</span>
-        <span class="mobile">2022-09-09 10:56</span>
+        <span class="pc">2022-10-14 09:15:17</span>
+        <span class="mobile">2022-10-14 09:15</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-09-09 10:56:55</span>
+        <span class="pc">2022-10-14 09:15:17</span>
     </span>
     
     
@@ -207,12 +207,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>295 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>920 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
         </span>
     
     
@@ -224,18 +224,79 @@
             
 
             <div class="article-content keep-markdown-body">
-                <h2 id="BTC-挖矿难度"><a href="#BTC-挖矿难度" class="headerlink" title="BTC-挖矿难度"></a>BTC-挖矿难度</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Vt411X7JF?p=7" >B站视频链接<i class="fas fa-external-link-alt"></i></a></p>
+                <h2 id="ETH-GHOST协议"><a href="#ETH-GHOST协议" class="headerlink" title="ETH-GHOST协议"></a>ETH-GHOST协议</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Vt411X7JF?p=18" >B站视频链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>以太坊的共识机制：GHOST 协议</p>
 <hr>
-<h3 id="为什么需要调整挖矿难度"><a href="#为什么需要调整挖矿难度" class="headerlink" title="为什么需要调整挖矿难度"></a>为什么需要调整挖矿难度</h3><script type="math/tex; mode=display">H(\text{block header})\le \text{target}</script><p>调整挖矿难度即调整目标空间在所有输出空间中所占的比例</p>
-<p>挖矿难度与目标阈值成反比</p>
-<script type="math/tex; mode=display">\text{difficulty}=\frac{\text{difficulty_1_target}}{\text{target}}</script><p>其中 $\text{difficulty_1_target}$ 为挖矿难度为 $1$（最小值）时对应的目标阈值，$\text{target}$ 为当前目标阈值</p>
-<p>比特币系统通过改变目标阈值来影响挖矿难度，以控制每个区块的出块时间</p>
-<p>如果出快速度过快，可能会有多个节点同时出块，形成多分叉，多分叉会分散诚实节点的算力，影响安全性</p>
+<h3 id="与比特币的对比"><a href="#与比特币的对比" class="headerlink" title="与比特币的对比"></a>与比特币的对比</h3><p>比特币的出块时间设计为为 $10$ 分钟，而以太坊的出块时间大大减少，为 $12-14$ 秒</p>
+<p>如果使用原先的共识机制，将会产生大量的临时性分叉，并且导致不公平的出现（<code>mining centralization</code>），大型矿池所挖出的块更有可能称为最长合法链（<code>centralization bias</code>）</p>
+<p>以太坊使用基于 GHOST 的协议，其对于矿工挖出的 <code>orphan block</code>（以太坊中称为 <code>uncle block</code>）也会给与一定奖励</p>
 <hr>
-<h3 id="如何调整挖矿难度"><a href="#如何调整挖矿难度" class="headerlink" title="如何调整挖矿难度"></a>如何调整挖矿难度</h3><p>比特币系统规定每 $2016$ 个区块调整一次目标阈值，约为 $2$ 星期</p>
-<p>具体的迭代调整公式：</p>
-<script type="math/tex; mode=display">\text{target}=\text{target}\times\frac{\text{actual time}}{\text{expected time}}</script><p>这里 $\text{expected time}$ 为 $2016\times10$ 分钟，即 $14$ 天，$\text{actual time}$ 为系统中最近产生的 $2016$ 个区块实际所用的时间</p>
-<p>在实际应用中，$\text{target}$ 单次上调或下调的最大值均不超过 $4$ 倍</p>
+<h3 id="GHOST-协议及发展"><a href="#GHOST-协议及发展" class="headerlink" title="GHOST 协议及发展"></a>GHOST 协议及发展</h3><p>最初版本的 GHOST 协议规则如下：</p>
+<pre class="mermaid">graph RL
+    A1[1]
+    A2[2]-->A1
+    A3[3]-->A2
+    A4[4]-->A3
+    A5[5]-->A3
+    A6[6]-->A3
+    A7[7]-->A5
+    A8[8]-->A3
+    style A4 fill: #395260
+    style A6 fill: #395260</pre>
+
+<blockquote>
+<p>这时 $7$ 所在的链成为最长合法链，$4$、$6$ 和 $8$ 是 <code>uncle block</code></p>
+<p>$7$ 块可以将 $4$ 和 $6$ 包含在区块里，被包含 <code>uncle block</code> 的挖出矿工可以获得 $\frac{7}{8}$ 的出块奖励，而包含一个 <code>uncle block</code> 可以额外获得 $\frac{1}{32}$ 的出块奖励</p>
+<p>一个区块最多可以包含 $2$ 个 <code>uncle block</code></p>
+</blockquote>
+<p>这样会导致，如上图如果 $7$ 包含了 $4$ 和 $6$，将不能再包含 $8$，这对 $8$ 是不公平的</p>
+<p>同时也可能出现由于矿池间竞争，$7$ 故意不包含 $4$ 和 $6$ 等</p>
+<hr>
+<p>GHOST 协议修改版，不再“区分辈分”，即在如下情况中：</p>
+<pre class="mermaid">graph RL
+    A1[1]
+    A2[2]-->A1
+    A3[3]-->A2
+    A4[4]-->A3
+    A5[5]-->A3
+    A6[6]-->A3
+    A7[7]-->A5
+    A8[8]-->A3
+    A9[9]-->A7
+    style A4 fill: #395260
+    style A6 fill: #395260</pre>
+
+<p>$4$、$6$ 和 $8$ 也是 $9$ 的 <code>uncle block</code></p>
+<p>如果 $7$ 未将 $8$ 包含，那么 $9$ 仍可将 $8$ 当作 <code>uncle block</code> 包含</p>
+<p>这样导致一个问题，新挖出的区块可能会包含一个非常久远的叔父区块，从而导致其他问题，需要对 GHOST 协议再做修改</p>
+<hr>
+<p>GHOST 协议修改版 $2.0$，限制更久远的叔父区块获得的奖励，如下：</p>
+<pre class="mermaid">graph RL
+    A1[1]
+    A2[2]-->A1
+    A3[3]-->A2
+    A4[4]-->A3
+    A5[5]-->A4
+    A6[6]-->A5
+    A12[2']-->A1
+    A22[3']-->A2
+    A32[4']-->A3
+    A42[5']-->A4</pre>
+
+<p>若 $6$ 包含它真正的 <code>uncle block</code> $5’$，那么 $5’$ 可以获得 $\frac{7}{8}$ 的出块奖励</p>
+<p>若包含两代前的 <code>uncle block</code> $4’$，$4’$ 可以获得 $\frac{6}{8}$ 的出块奖励</p>
+<p>若包含三代前的 <code>uncle block</code> $3’$，$3’$ 可以获得 $\frac{5}{8}$ 的出块奖励</p>
+<p>以此类推，最久可以包含六代前的 <code>uncle block</code>，其获得 $\frac{2}{8}$ 的出块奖励</p>
+<p>而更久远的 <code>uncle block</code> 将不能被包含（七代前的叔父区块并非是 $\frac{1}{8}$ 的出块奖励，而是不能被包含）</p>
+<p>即，包含的 <code>uncle block</code> 和当前区块在七代内需要有共同祖先</p>
+<p>对于新挖出的区块，包含一个叔父区块的奖励仍是 $\frac{1}{32}$，最多仍是包含 $2$ 个叔父区块</p>
+<p>这种设计可以鼓励出现分叉后尽快进行包含合并，以解决临时性分叉的问题</p>
+<p><strong>注意：只有出现后的第一个区块可以得到 <code>uncle reward</code>，之后的区块将不能得到奖励</strong></p>
+<hr>
+<h3 id="区块与奖励"><a href="#区块与奖励" class="headerlink" title="区块与奖励"></a>区块与奖励</h3><p>以太坊中挖出的区块的矿工可以获得两部分奖励：出块奖励 <code>block reward</code> 和 区块中包含的智能合约执行所付出的汽油费 <code>gas fee</code>（类似于比特币的 <code>tx fee</code>）</p>
+<p><code>uncle block</code> 只能获得 <code>block reward</code>，不能获得 <code>gas fee</code></p>
+<p>当新区块包含一个 <code>uncle block</code> 时，仅作一部分合法性检查，<code>uncle block</code> 中包含的交易不会被执行</p>
+<p>一个区块实例：<a class="link"   target="_blank" rel="noopener" href="https://etherscan.io/block/15471576" >block/15471576<i class="fas fa-external-link-alt"></i></a></p>
 
             </div>
 
@@ -257,13 +318,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/2022/09/13/BTC%E7%AC%94%E8%AE%B0-07-%E6%8C%96%E7%9F%BF/"
+                               href="/2022/10/16/ETH%E7%AC%94%E8%AE%B0-06-%E6%8C%96%E7%9F%BF%E7%AE%97%E6%B3%95/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item">BTC笔记-07-挖矿</span>
+                                <span class="post-nav-title-item">ETH笔记-06-挖矿算法</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
@@ -273,10 +334,10 @@
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2022/09/07/BTC%E7%AC%94%E8%AE%B0-05-%E7%BD%91%E7%BB%9C/"
+                               href="/2022/10/10/ETH%E7%AC%94%E8%AE%B0-04-%E4%BA%A4%E6%98%93%E6%A0%91%E5%92%8C%E6%94%B6%E6%8D%AE%E6%A0%91/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">BTC笔记-05-网络</span>
+                                <span class="post-nav-title-item">ETH笔记-04-交易树和收据树</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                                 <span class="right arrow-icon flex-center">

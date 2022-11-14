@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Buzzing">
+    
+    <title>
+        
+            ETH笔记-06-挖矿算法 |
+        
+        Buzzing&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/blog.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/fontawesome/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"buuzzing.github.io","root":"/","language":"zh-CN"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":null,"favicon":"/images/blog.svg","avatar":"/images/avatar.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.7"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.5.2"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+               Buzzing&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">ETH笔记-06-挖矿算法</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Buzzing</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-10-16 15:13:13</span>
+        <span class="mobile">2022-10-16 15:13</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-10-16 15:13:13</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <h2 id="ETH-挖矿算法"><a href="#ETH-挖矿算法" class="headerlink" title="ETH-挖矿算法"></a>ETH-挖矿算法</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Vt411X7JF?p=19" >B站视频链接<i class="fas fa-external-link-alt"></i></a></p>
+<hr>
+<h3 id="与比特币对比"><a href="#与比特币对比" class="headerlink" title="与比特币对比"></a>与比特币对比</h3><p>比特币使用专用芯片和专用矿机挖矿，这与设计之初的去中心化的理念是相违背的，也会带来潜在的安全隐患</p>
+<p>因此以太坊在设计 <code>mining puzzle</code> 时要求 <code>ASIC resistance</code>，常用的方法是使用 <code>memory hard mining puzzle</code></p>
+<hr>
+<h3 id="挖矿的设计思路"><a href="#挖矿的设计思路" class="headerlink" title="挖矿的设计思路"></a>挖矿的设计思路</h3><p><strong>莱特币的挖矿设计思路</strong></p>
+<p>莱特币使用 <code>Scrypt</code>，为一个对内存有较高要求的哈希函数</p>
+<p><code>Scrypt</code> 要求设置一个大数组，然后进行伪随机数的填充，具体步骤是：首先置一个 <code>seed</code>，通过对 <code>seed</code> 进行一些运算的数组的第一个元素；之后数组的每个元素都由前一个元素取哈希值得到</p>
+<p>在求解 <code>puzzle</code> 时需要按一定的伪随机顺序从数组中读取数，而如果矿工的内存不够大，无法将数组完全保存，则需要现计算数组元素，提升了挖矿复杂度</p>
+<p>然而挖矿通常要求容易验证，这种设计导致验证时也几乎需要和挖矿时同样大小的内存空间，对轻节点是不友好的</p>
+<hr>
+<p><strong>以太坊的挖矿设计</strong></p>
+<p>以太坊对莱特币所使用的 <code>Scrypt</code> 做了一些修改，设计了一大一小两个数组：一个 $16\text{M}$ 的 <code>cache</code> 和一个 $1\text{G}$ 的 <code>dataset (DAG)</code>（<code>DAG</code> 的大小会根据需求修改，可参考 <a class="link"   target="_blank" rel="noopener" href="https://minerstat.com/dag-size-calculator" >minerstat<i class="fas fa-external-link-alt"></i></a>）</p>
+<p>这种设计可以便于验证，轻节点仅保存 $16\text{M}$ 的 <code>cache</code> 即可，矿工才需要保存 <code>DAG</code></p>
+<p>在挖矿过程中，<code>cache</code> 的生成方式和莱特币类似，也是由种子计算出第一个元素，再依次取哈希得到 <code>cache</code></p>
+<p>但在以太坊中需要再生成一个大数组，大数组中的每个元素都是由 <code>cache</code> 中读取一些元素（$256$ 个，即迭代了 $256$ 次）计算生成的</p>
+<p>求解 <code>puzzle</code> 时使用的是 <code>DAG</code> 数组</p>
+<hr>
+<p><strong>以太坊挖矿算法的伪代码</strong></p>
+<p>生成 <code>cache</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每隔 30,000 个区块会重新生成 seed</span></span><br><span class="line"><span class="comment"># 并利用新的 seed 生成新的 cache</span></span><br><span class="line"><span class="comment"># cache 的初始大小为 16M，每隔 30,000 个</span></span><br><span class="line"><span class="comment"># 块重新生成时增大 128K</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mkcache</span>(<span class="params">cache_size, seed</span>):</span><br><span class="line">    o = [hase(seed)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, cache_size):</span><br><span class="line">        o.append(<span class="built_in">hash</span>(o[-<span class="number">1</span>]))</span><br><span class="line">    <span class="keyword">return</span> o</span><br></pre></td></tr></table></figure>
+<p>生成 <code>DAG</code> 中的第 $i$ 个元素：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DAG 的大小也是每隔 30,000 个区块更新，增大 8M</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calc_dataset_item</span>(<span class="params">cache, i</span>):</span><br><span class="line">    cache_size = cache.size</span><br><span class="line">    <span class="comment"># 首先生成初始的 mix</span></span><br><span class="line">    <span class="comment"># 为保证每个初始的 mix 不同，令 i 也参与计算</span></span><br><span class="line">    mix = <span class="built_in">hash</span>(cache[i % cache_size] ^ i)</span><br><span class="line">    <span class="comment"># 迭代 256 次</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">        <span class="comment"># 每次读的下一个数的位置是由当前的哈希值决定的</span></span><br><span class="line">        cache_index = get_int_from_item(mix)</span><br><span class="line">        <span class="comment"># 新的哈希值是由当前的哈希值和数组中下一个数的值计算出的</span></span><br><span class="line">        mix = make_item(mix, cache[cache_index % cache_size])</span><br><span class="line">    <span class="comment"># 最终返回 mix 的哈希值，得到 DAG 中的第 i 个元素</span></span><br><span class="line">    <span class="comment"># 反复调用此函数，得到完整的 DAG</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">hash</span>(mix)</span><br></pre></td></tr></table></figure>
+<p>由上面的函数生成 <code>DAG</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">calc_dataset</span>(<span class="params">full_size, cache</span>):</span><br><span class="line">    <span class="keyword">return</span> [calc_dataset_item(cache, i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(full_size)]</span><br></pre></td></tr></table></figure>
+<p>矿工用，挖矿函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># header: 块头</span></span><br><span class="line"><span class="comment"># nonce: 挖矿所尝试的随机值</span></span><br><span class="line"><span class="comment"># full_size: DAG 的元素个数</span></span><br><span class="line"><span class="comment"># dataset: DAG 本身</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hashimoto_full</span>(<span class="params">header, nonce, full_size, dataset</span>):</span><br><span class="line">    <span class="comment"># 首先由块头和所选取的 nonce 值计算出初始 mix</span></span><br><span class="line">    mix = <span class="built_in">hash</span>(header, nonce)</span><br><span class="line">    <span class="comment"># 迭代 64 轮，每次读取 DAG 中相邻的两个数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">64</span>):</span><br><span class="line">        <span class="comment"># 读取的位置由当前的哈希值决定</span></span><br><span class="line">        dataset_index = get_int_from_item(mix) % full_size</span><br><span class="line">        <span class="comment"># 类似于 DAG 的生成过程</span></span><br><span class="line">        <span class="comment"># 新的哈希值是由当前的哈希值和 DAG 中的数确定的</span></span><br><span class="line">        <span class="comment"># 每次使用的 DAG 中的这两个数虽然相邻</span></span><br><span class="line">        <span class="comment"># 但都是利用 cache 独立生成的，没有关系</span></span><br><span class="line">        mix = make_item(mix, dataset[dataset_index])</span><br><span class="line">        mix = make_item(mix, dataset[dataset_index + <span class="number">1</span>])</span><br><span class="line">    <span class="comment"># 最终返回 mix 的哈希值，与 target 比较</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">hash</span>(mix)</span><br></pre></td></tr></table></figure>
+<p>轻结点用，验证函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># header: 块头</span></span><br><span class="line"><span class="comment"># nonce: 挖矿所尝试的随机值</span></span><br><span class="line"><span class="comment"># full_size: DAG 的元素个数</span></span><br><span class="line"><span class="comment"># cache: 生成 DAG 所用的 cache</span></span><br><span class="line"><span class="comment"># 轻结点的目标是验证 nonce 是否符合要求</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hashimoto_light</span>(<span class="params">header, nonce, full_size, cache</span>):</span><br><span class="line">    mix = <span class="built_in">hash</span>(header, nonce)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">64</span>):</span><br><span class="line">        dataset_index = get_int_from_item(mix) % full_size</span><br><span class="line">        <span class="comment"># DAG 中的每个元素都可以独立生成</span></span><br><span class="line">        <span class="comment"># 这也保证了轻节点仅需计算所需位置的元素即可</span></span><br><span class="line">        mix = make_item(mix, calc_dataset_item(cache, dataset_index))</span><br><span class="line">        mix = make_item(mix, calc_dataset_item(cache, dataset_index + <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">hash</span>(mix)</span><br></pre></td></tr></table></figure>
+<p>矿工的挖矿执行函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">mine</span>(<span class="params">full_size, dataset, header, target</span>):</span><br><span class="line">    <span class="comment"># 初始化一个随机的 nonce</span></span><br><span class="line">    nonce = random.randint(<span class="number">0</span>, <span class="number">2</span>**<span class="number">64</span>)</span><br><span class="line">    <span class="comment"># 然会逐一尝试 nonce，直到满足难度目标阈值要求</span></span><br><span class="line">    <span class="keyword">while</span> hashimoto_full(header, nonce, full_size, dataset) &gt; target:</span><br><span class="line">        nonce = (nonce + <span class="number">1</span>) % <span class="number">2</span>**<span class="number">64</span></span><br><span class="line">    <span class="keyword">return</span> nonce</span><br></pre></td></tr></table></figure>
+<p>以太坊币价和供应量：<a class="link"   target="_blank" rel="noopener" href="https://coinmarketcap.com/currencies/ethereum/" >CoinMarketCap<i class="fas fa-external-link-alt"></i></a></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/10/19/ETH%E7%AC%94%E8%AE%B0-07-%E9%9A%BE%E5%BA%A6%E8%B0%83%E6%95%B4/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">ETH笔记-07-难度调整</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/10/14/ETH%E7%AC%94%E8%AE%B0-05-GHOST%E5%8D%8F%E8%AE%AE/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">ETH笔记-05-GHOST协议</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Buzzing</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.2</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.5.2/source/js/post-helper.js"></script>
+        
+        
+    
+</div>
+
+
+
+<!-- Support for mermaid -->
+
+<script src='https://unpkg.com/mermaid@9.2.2/dist/mermaid.min.js'></script>
+<script>
+    if (window.mermaid) {
+    mermaid.initialize({theme: 'default'});
+    }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

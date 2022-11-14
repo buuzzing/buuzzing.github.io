@@ -9,7 +9,7 @@
     
     <title>
         
-            BTC笔记-06-挖矿难度 |
+            ETH笔记-04-交易树和收据树 |
         
         Buzzing&#39;s Blog
     </title>
@@ -150,7 +150,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">BTC笔记-06-挖矿难度</span>
+                <span class="title-hover-animation">ETH笔记-04-交易树和收据树</span>
             </div>
 
             
@@ -170,13 +170,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-09-09 10:56:55</span>
-        <span class="mobile">2022-09-09 10:56</span>
+        <span class="pc">2022-10-10 12:59:49</span>
+        <span class="mobile">2022-10-10 12:59</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-09-09 10:56:55</span>
+        <span class="pc">2022-10-10 12:59:49</span>
     </span>
     
     
@@ -207,12 +207,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>295 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>765 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
         </span>
     
     
@@ -224,18 +224,35 @@
             
 
             <div class="article-content keep-markdown-body">
-                <h2 id="BTC-挖矿难度"><a href="#BTC-挖矿难度" class="headerlink" title="BTC-挖矿难度"></a>BTC-挖矿难度</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Vt411X7JF?p=7" >B站视频链接<i class="fas fa-external-link-alt"></i></a></p>
+                <h2 id="ETH-交易树和收据树"><a href="#ETH-交易树和收据树" class="headerlink" title="ETH-交易树和收据树"></a>ETH-交易树和收据树</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Vt411X7JF?p=17" >B站视频链接<i class="fas fa-external-link-alt"></i></a></p>
 <hr>
-<h3 id="为什么需要调整挖矿难度"><a href="#为什么需要调整挖矿难度" class="headerlink" title="为什么需要调整挖矿难度"></a>为什么需要调整挖矿难度</h3><script type="math/tex; mode=display">H(\text{block header})\le \text{target}</script><p>调整挖矿难度即调整目标空间在所有输出空间中所占的比例</p>
-<p>挖矿难度与目标阈值成反比</p>
-<script type="math/tex; mode=display">\text{difficulty}=\frac{\text{difficulty_1_target}}{\text{target}}</script><p>其中 $\text{difficulty_1_target}$ 为挖矿难度为 $1$（最小值）时对应的目标阈值，$\text{target}$ 为当前目标阈值</p>
-<p>比特币系统通过改变目标阈值来影响挖矿难度，以控制每个区块的出块时间</p>
-<p>如果出快速度过快，可能会有多个节点同时出块，形成多分叉，多分叉会分散诚实节点的算力，影响安全性</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在数据结构上，交易树和收据树都是 MPT</p>
+<p>为了方便智能合约的执行，交易树和收据树是相互关联的，一笔交易对应一个收据</p>
+<p>一个区块中的交易树、收据树是独立的，与其他区块中的交易树、收据树无关。状态树记录的是整个系统所有账户的状态，区块中的状态树只记录那些被修改了的账户</p>
+<p>为了方便查找，以太坊使用了 <code>bloom filter</code></p>
+<p><code>bloom filter</code> 可能出现 <code>false positive</code>，但不会出现 <code>false negative</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://s2.loli.net/2022/11/14/gTO6ka3c8ndGlUX.png"
+                      alt="Bloom Filter"
+                ></p>
+<center><i>Figure Source: <a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bloom_filter#/media/File:Bloom_filter.svg" >Bloom Filter Example<i class="fas fa-external-link-alt"></i></a></i></center>
+
+<p>由于哈希碰撞的存在，简单的 <code>bloom filter</code> 不支持删除操作</p>
+<p>参考：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/jiaomeng/article/details/1495500" >Bloom Filter 概念和原理<i class="fas fa-external-link-alt"></i></a></p>
 <hr>
-<h3 id="如何调整挖矿难度"><a href="#如何调整挖矿难度" class="headerlink" title="如何调整挖矿难度"></a>如何调整挖矿难度</h3><p>比特币系统规定每 $2016$ 个区块调整一次目标阈值，约为 $2$ 星期</p>
-<p>具体的迭代调整公式：</p>
-<script type="math/tex; mode=display">\text{target}=\text{target}\times\frac{\text{actual time}}{\text{expected time}}</script><p>这里 $\text{expected time}$ 为 $2016\times10$ 分钟，即 $14$ 天，$\text{actual time}$ 为系统中最近产生的 $2016$ 个区块实际所用的时间</p>
-<p>在实际应用中，$\text{target}$ 单次上调或下调的最大值均不超过 $4$ 倍</p>
+<h3 id="transaction-driven-state-machine"><a href="#transaction-driven-state-machine" class="headerlink" title="transaction-driven state machine"></a>transaction-driven state machine</h3><p>以太坊的运行过程可以看作一个交易驱动的状态机</p>
+<p>实现代码：</p>
+<p><strong>创建块</strong></p>
+<center><i>Code Source: <a class="link"   target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/core/types/block.go" >go-ethernum/core/types/block.go#NewBlock<i class="fas fa-external-link-alt"></i></a></i></center>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 NewBlock 函数里调用 DeriveSha 来得到交易树和收据树的根哈希值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewBlock</span><span class="params">(header *Header, txs []*Transaction, uncles []*Header, receipts []*Receipt, hasher TrieHasher)</span></span> *Block &#123;</span><br><span class="line">	b := &amp;Block&#123;header: CopyHeader(header)&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 创建交易树，计算根哈希值</span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(txs) == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="comment">// 如果交易列表为空，那么块头中交易树的根哈希值为空哈希值</span></span><br><span class="line">		b.header.TxHash = EmptyRootHash</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否则通过调用 DeriveSha 来得到交易树的根哈希值</span></span><br><span class="line">		b.header.TxHash = DeriveSha(Transactions(txs), hasher)</span><br><span class="line">        <span class="comment">// 创建区块的交易列表</span></span><br><span class="line">		b.transactions = <span class="built_in">make</span>(Transactions, <span class="built_in">len</span>(txs))</span><br><span class="line">		<span class="built_in">copy</span>(b.transactions, txs)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建收据树，计算根哈希值</span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(receipts) == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="comment">// 如果收据列表为空，那么块头中收据树的根哈希值为空哈希值</span></span><br><span class="line">		b.header.ReceiptHash = EmptyRootHash</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否则通过调用 DeriveSha 来得到收据树的根哈希值</span></span><br><span class="line">		b.header.ReceiptHash = DeriveSha(Receipts(receipts), hasher)</span><br><span class="line">        <span class="comment">// 创建块头中的 bloom filter</span></span><br><span class="line">        <span class="comment">// CreateBloom 函数用来创建 Block Header 中的 Bloom 域</span></span><br><span class="line">        <span class="comment">// 这个 Bloom Filter 由这个块中所有 receipts 的</span></span><br><span class="line">        <span class="comment">// Bloom Filter 组合得到</span></span><br><span class="line">		b.header.Bloom = CreateBloom(receipts)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算叔父区块的哈希值，构建叔父数组</span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(uncles) == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="comment">// 如果叔父列表为空，那么块头中叔父区块的哈希值为空哈希值</span></span><br><span class="line">		b.header.UncleHash = EmptyUncleHash</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 计算哈希值</span></span><br><span class="line">		b.header.UncleHash = CalcUncleHash(uncles)</span><br><span class="line">		b.uncles = <span class="built_in">make</span>([]*Header, <span class="built_in">len</span>(uncles))</span><br><span class="line">        <span class="comment">// 构建叔父数组</span></span><br><span class="line">		<span class="keyword">for</span> i := <span class="keyword">range</span> uncles &#123;</span><br><span class="line">			b.uncles[i] = CopyHeader(uncles[i])</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>收据数据结构</strong></p>
+<center><i>Code Source: <a class="link"   target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/core/types/receipt.go" >go-ethernum/core/types/receipt.go#Receipt<i class="fas fa-external-link-alt"></i></a></i></center>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Receipt represents the results of a transaction.</span></span><br><span class="line"><span class="keyword">type</span> Receipt <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">// Consensus fields: These fields are defined by the Yellow Paper</span></span><br><span class="line">	Type              <span class="type">uint8</span>  <span class="string">`json:&quot;type,omitempty&quot;`</span></span><br><span class="line">	PostState         []<span class="type">byte</span> <span class="string">`json:&quot;root&quot;`</span></span><br><span class="line">	Status            <span class="type">uint64</span> <span class="string">`json:&quot;status&quot;`</span></span><br><span class="line">	CumulativeGasUsed <span class="type">uint64</span> <span class="string">`json:&quot;cumulativeGasUsed&quot; gencodec:&quot;required&quot;`</span></span><br><span class="line">	Bloom             Bloom  <span class="string">`json:&quot;logsBloom&quot;         gencodec:&quot;required&quot;`</span></span><br><span class="line">	Logs              []*Log <span class="string">`json:&quot;logs&quot;              gencodec:&quot;required&quot;`</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// Implementation fields: These fields are added by geth when processing a transaction.</span></span><br><span class="line">	<span class="comment">// They are stored in the chain database.</span></span><br><span class="line">	TxHash          common.Hash    <span class="string">`json:&quot;transactionHash&quot; gencodec:&quot;required&quot;`</span></span><br><span class="line">	ContractAddress common.Address <span class="string">`json:&quot;contractAddress&quot;`</span></span><br><span class="line">	GasUsed         <span class="type">uint64</span>         <span class="string">`json:&quot;gasUsed&quot; gencodec:&quot;required&quot;`</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// Inclusion information: These fields provide information about the inclusion of the</span></span><br><span class="line">	<span class="comment">// transaction corresponding to this receipt.</span></span><br><span class="line">	BlockHash        common.Hash <span class="string">`json:&quot;blockHash,omitempty&quot;`</span></span><br><span class="line">	BlockNumber      *big.Int    <span class="string">`json:&quot;blockNumber,omitempty&quot;`</span></span><br><span class="line">	TransactionIndex <span class="type">uint</span>        <span class="string">`json:&quot;transactionIndex&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
             </div>
 
@@ -257,13 +274,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/2022/09/13/BTC%E7%AC%94%E8%AE%B0-07-%E6%8C%96%E7%9F%BF/"
+                               href="/2022/10/14/ETH%E7%AC%94%E8%AE%B0-05-GHOST%E5%8D%8F%E8%AE%AE/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item">BTC笔记-07-挖矿</span>
+                                <span class="post-nav-title-item">ETH笔记-05-GHOST协议</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
@@ -273,10 +290,10 @@
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2022/09/07/BTC%E7%AC%94%E8%AE%B0-05-%E7%BD%91%E7%BB%9C/"
+                               href="/2022/10/07/ETH%E7%AC%94%E8%AE%B0-03-%E7%8A%B6%E6%80%81%E6%A0%91/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">BTC笔记-05-网络</span>
+                                <span class="post-nav-title-item">ETH笔记-03-状态树</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                                 <span class="right arrow-icon flex-center">

@@ -9,7 +9,7 @@
     
     <title>
         
-            BTC笔记-06-挖矿难度 |
+            ETH笔记-03-状态树 |
         
         Buzzing&#39;s Blog
     </title>
@@ -150,7 +150,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">BTC笔记-06-挖矿难度</span>
+                <span class="title-hover-animation">ETH笔记-03-状态树</span>
             </div>
 
             
@@ -170,13 +170,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2022-09-09 10:56:55</span>
-        <span class="mobile">2022-09-09 10:56</span>
+        <span class="pc">2022-10-07 22:10:27</span>
+        <span class="mobile">2022-10-07 22:10</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2022-09-09 10:56:55</span>
+        <span class="pc">2022-10-07 22:10:27</span>
     </span>
     
     
@@ -207,12 +207,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>295 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>814 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
         </span>
     
     
@@ -224,18 +224,81 @@
             
 
             <div class="article-content keep-markdown-body">
-                <h2 id="BTC-挖矿难度"><a href="#BTC-挖矿难度" class="headerlink" title="BTC-挖矿难度"></a>BTC-挖矿难度</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Vt411X7JF?p=7" >B站视频链接<i class="fas fa-external-link-alt"></i></a></p>
+                <h2 id="ETH-状态树"><a href="#ETH-状态树" class="headerlink" title="ETH-状态树"></a>ETH-状态树</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Vt411X7JF?p=16" >B站视频链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>$\text{ETH}$ 的数据结构目的是维护一个账户地址到账户状态的映射，以记录账户信息</p>
+<p>即 <code>addr</code> -&gt; <code>state</code></p>
 <hr>
-<h3 id="为什么需要调整挖矿难度"><a href="#为什么需要调整挖矿难度" class="headerlink" title="为什么需要调整挖矿难度"></a>为什么需要调整挖矿难度</h3><script type="math/tex; mode=display">H(\text{block header})\le \text{target}</script><p>调整挖矿难度即调整目标空间在所有输出空间中所占的比例</p>
-<p>挖矿难度与目标阈值成反比</p>
-<script type="math/tex; mode=display">\text{difficulty}=\frac{\text{difficulty_1_target}}{\text{target}}</script><p>其中 $\text{difficulty_1_target}$ 为挖矿难度为 $1$（最小值）时对应的目标阈值，$\text{target}$ 为当前目标阈值</p>
-<p>比特币系统通过改变目标阈值来影响挖矿难度，以控制每个区块的出块时间</p>
-<p>如果出快速度过快，可能会有多个节点同时出块，形成多分叉，多分叉会分散诚实节点的算力，影响安全性</p>
+<h3 id="Trie-树"><a href="#Trie-树" class="headerlink" title="Trie 树"></a>Trie 树</h3><p>字典树，一个像字典一样的树</p>
+<p>举例构造 General, Genesis, Go, God 和 Good 五个单次的字典树</p>
+<pre class="mermaid">graph TD
+    A1((_))
+    A1--G-->B1((G))
+    B1--E-->C1((E))
+    B1--O-->C2((O))
+    C1--N-->D1((N))
+    C2--D-->D2((D))
+    C2--O-->D3((O))
+    D1--E-->E1((E))
+    D3--D-->E2((D))
+    E1--R-->F1((R))
+    E1--S-->F2((S))
+    F1--A-->G1((A))
+    G1--L-->H1((L))
+    F2--I-->G2((I))
+    G2--S-->H2((S))
+    style C2 fill: #0aa344
+    style D2 fill: #0aa344
+    style E2 fill: #0aa344
+    style H1 fill: #0aa344
+    style H2 fill: #0aa344</pre>
+
+<p>以太坊中的账户地址长度为 $160 \text{bits}$，用 $40$ 位十六进制记录</p>
+<p>以太坊中将账户地址组织为一棵字典树</p>
 <hr>
-<h3 id="如何调整挖矿难度"><a href="#如何调整挖矿难度" class="headerlink" title="如何调整挖矿难度"></a>如何调整挖矿难度</h3><p>比特币系统规定每 $2016$ 个区块调整一次目标阈值，约为 $2$ 星期</p>
-<p>具体的迭代调整公式：</p>
-<script type="math/tex; mode=display">\text{target}=\text{target}\times\frac{\text{actual time}}{\text{expected time}}</script><p>这里 $\text{expected time}$ 为 $2016\times10$ 分钟，即 $14$ 天，$\text{actual time}$ 为系统中最近产生的 $2016$ 个区块实际所用的时间</p>
-<p>在实际应用中，$\text{target}$ 单次上调或下调的最大值均不超过 $4$ 倍</p>
+<h3 id="Patricia-tree"><a href="#Patricia-tree" class="headerlink" title="Patricia tree"></a>Patricia tree</h3><p>字典树中某些链上的节点均只有一个子节点，造成了存储浪费，也影响查找效率</p>
+<p><code>Patricia tree</code> 是对字典树进行路径压缩后的结果，减少了内存访问次数，提高了查找效率</p>
+<pre class="mermaid">graph TD
+    A1((G))--E-->B1((ENE))
+    A1--O-->B2((O))
+    B1--R-->C1((RAL))
+    B1--S-->C2((SIS))
+    B2--D-->C3((D))
+    B2--O-->C4((OD))
+    style B2 fill: #0aa344
+    style C1 fill: #0aa344
+    style C2 fill: #0aa344
+    style C3 fill: #0aa344
+    style C4 fill: #0aa344</pre>
+
+<p>需要注意的是，<code>Patricia tree</code> 当加入新元素时可能会展开某些被压缩的节点</p>
+<hr>
+<h3 id="Merkle-Patricia-tree"><a href="#Merkle-Patricia-tree" class="headerlink" title="Merkle Patricia tree"></a>Merkle Patricia tree</h3><p>相较于 <code>Patricia tree</code>，<code>Merkle Patricia tree</code> 将普通指针换成了哈希指针</p>
+<p>在以太坊区块链的头部记录 <code>Merkle Patricia tree</code> 的根哈希值</p>
+<p>实际上以太坊使用的是修改版的 <code>Modified MPT</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://s2.loli.net/2022/11/14/yZW4R5KokMuLbYT.png"
+                      alt="Merkle Patricia Tree"
+                ></p>
+<center><i>Figure Source: <a class="link"   target="_blank" rel="noopener" href="https://ethereum.stackexchange.com/questions/268/ethereum-block-architecture" >Lee Thomas<i class="fas fa-external-link-alt"></i></a></i></center>
+
+<p>使用了 <code>Extension Node</code> 和 <code>Branch Node</code></p>
+<hr>
+<h3 id="Block-数据结构"><a href="#Block-数据结构" class="headerlink" title="Block 数据结构"></a>Block 数据结构</h3><center><i>Code Source: <a class="link"   target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/core/types/block.go" >go-ethernum/core/types/block.go<i class="fas fa-external-link-alt"></i></a></i></center>
+
+<hr>
+<p><strong>Header</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Header <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">// 父区块块头的哈希值</span></span><br><span class="line">	ParentHash  common.Hash    <span class="string">`json:&quot;parentHash&quot;       gencodec:&quot;required&quot;`</span></span><br><span class="line">	UncleHash   common.Hash    <span class="string">`json:&quot;sha3Uncles&quot;       gencodec:&quot;required&quot;`</span></span><br><span class="line">    <span class="comment">// 挖出该块的矿工地址</span></span><br><span class="line">	Coinbase    common.Address <span class="string">`json:&quot;miner&quot;`</span></span><br><span class="line">    <span class="comment">// 状态树根哈希值</span></span><br><span class="line">	Root        common.Hash    <span class="string">`json:&quot;stateRoot&quot;        gencodec:&quot;required&quot;`</span></span><br><span class="line">    <span class="comment">// 交易树根哈希值</span></span><br><span class="line">	TxHash      common.Hash    <span class="string">`json:&quot;transactionsRoot&quot; gencodec:&quot;required&quot;`</span></span><br><span class="line">    <span class="comment">// 收据树根哈希值</span></span><br><span class="line">	ReceiptHash common.Hash    <span class="string">`json:&quot;receiptsRoot&quot;     gencodec:&quot;required&quot;`</span></span><br><span class="line">	Bloom       Bloom          <span class="string">`json:&quot;logsBloom&quot;        gencodec:&quot;required&quot;`</span></span><br><span class="line">    <span class="comment">// 挖矿难度</span></span><br><span class="line">	Difficulty  *big.Int       <span class="string">`json:&quot;difficulty&quot;       gencodec:&quot;required&quot;`</span></span><br><span class="line">	Number      *big.Int       <span class="string">`json:&quot;number&quot;           gencodec:&quot;required&quot;`</span></span><br><span class="line">    <span class="comment">// 智能合约需要消耗汽油费，类似于比特币的交易费</span></span><br><span class="line">	GasLimit    <span class="type">uint64</span>         <span class="string">`json:&quot;gasLimit&quot;         gencodec:&quot;required&quot;`</span></span><br><span class="line">	GasUsed     <span class="type">uint64</span>         <span class="string">`json:&quot;gasUsed&quot;          gencodec:&quot;required&quot;`</span></span><br><span class="line">    <span class="comment">// 区块的产生时间</span></span><br><span class="line">	Time        <span class="type">uint64</span>         <span class="string">`json:&quot;timestamp&quot;        gencodec:&quot;required&quot;`</span></span><br><span class="line">	Extra       []<span class="type">byte</span>         <span class="string">`json:&quot;extraData&quot;        gencodec:&quot;required&quot;`</span></span><br><span class="line">	MixDigest   common.Hash    <span class="string">`json:&quot;mixHash&quot;`</span></span><br><span class="line">    <span class="comment">// 挖矿随机数</span></span><br><span class="line">	Nonce       BlockNonce     <span class="string">`json:&quot;nonce&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>Block</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Block <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">// 指向 block header 的指针</span></span><br><span class="line">	header       *Header</span><br><span class="line">    <span class="comment">// 指向叔叔区块的 header 的指针</span></span><br><span class="line">	uncles       []*Header</span><br><span class="line">    <span class="comment">// 区块中的交易列表</span></span><br><span class="line">	transactions Transactions</span><br><span class="line"></span><br><span class="line">	<span class="comment">// caches</span></span><br><span class="line">	hash atomic.Value</span><br><span class="line">	size atomic.Value</span><br><span class="line"></span><br><span class="line">	<span class="comment">// These fields are used by package eth to track</span></span><br><span class="line">	<span class="comment">// inter-peer block relay.</span></span><br><span class="line">	ReceivedAt   time.Time</span><br><span class="line">	ReceivedFrom <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>实际的发布结构体为</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &quot;external&quot; block encoding. used for eth protocol, etc.</span></span><br><span class="line"><span class="keyword">type</span> extblock <span class="keyword">struct</span> &#123;</span><br><span class="line">	Header *Header</span><br><span class="line">	Txs    []*Transaction</span><br><span class="line">	Uncles []*Header</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="账户状态的存储方式"><a href="#账户状态的存储方式" class="headerlink" title="账户状态的存储方式"></a>账户状态的存储方式</h3><p>上述说明了账户地址使用 MPT 的方式存储，而对应的状态需要使用 <code>Recursive Length Prefix</code> 的方法进行序列化后存储</p>
+<p>RLP 使用 <code>nested array of bytes</code> 进行序列化</p>
 
             </div>
 
@@ -257,13 +320,13 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/2022/09/13/BTC%E7%AC%94%E8%AE%B0-07-%E6%8C%96%E7%9F%BF/"
+                               href="/2022/10/10/ETH%E7%AC%94%E8%AE%B0-04-%E4%BA%A4%E6%98%93%E6%A0%91%E5%92%8C%E6%94%B6%E6%8D%AE%E6%A0%91/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item">BTC笔记-07-挖矿</span>
+                                <span class="post-nav-title-item">ETH笔记-04-交易树和收据树</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                             </a>
@@ -273,10 +336,10 @@
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2022/09/07/BTC%E7%AC%94%E8%AE%B0-05-%E7%BD%91%E7%BB%9C/"
+                               href="/2022/10/03/ETH%E7%AC%94%E8%AE%B0-02-%E8%B4%A6%E6%88%B7/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">BTC笔记-05-网络</span>
+                                <span class="post-nav-title-item">ETH笔记-02-账户</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
